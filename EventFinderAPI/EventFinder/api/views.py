@@ -21,10 +21,11 @@ def getEventslist(request):
     event_list.sort(key=lambda x: x['date'])
     for i in range(len(event_list)):
         ls = event_list[i]
-        weather_url = 'url'
+        weather_url = f"https://gg-backend-assignment.azurewebsites.net/api/Weather?code=KfQnTWHJbg1giyB_Q9Ih3Xu3L9QOBDTuU5zwqVikZepCAzFut3rqsg==&city={ls.get('city')}&date={ls.get('date')}"
         weather = requests.get(weather_url).json()
         
-        distance_url = 'd_url'  
+        distance_url = f"https://gg-backend-assignment.azurewebsites.net/api/Distance?code=IAKvV2EvJa6Z6dEIUqqd7yGAu7IZ8gaH-a0QO6btjRc1AzFu8Y3IcQ==&latitude1={user_inputs.get('latitude')}&longitude1={user_inputs.get('longitude')}&latitude2={ls.get('latitude')}&longitude2={ls.get('longitude')}"
+        
         distance = requests.get(distance_url).json()
         reslt = {
             "event_name": ls.get('event_name'), 
